@@ -6,7 +6,7 @@ import { Http, Headers } from '@angular/http';
 
 
 @Injectable()
-export class MyOwnHttp {
+export class ServiceMyHttp {
 
     private Url = 'https://node-cero.herokuapp.com/user';
 

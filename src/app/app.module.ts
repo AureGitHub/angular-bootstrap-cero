@@ -5,7 +5,10 @@ import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
 import {HttpModule} from '@angular/http';
 
-import {MyOwnHttp} from './services/my.own.http.service'
+import {ServiceMyHttp} from './services/my.http.service'
+import {ServiceStatus} from './services/status.service'
+
+import { RouterModule, Routes } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,7 @@ import {MyOwnHttp} from './services/my.own.http.service'
     UiModule,
     HttpModule
   ],
-  providers: [MyOwnHttp],
+  providers: [ServiceMyHttp,ServiceStatus],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

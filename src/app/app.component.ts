@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MyOwnHttp} from './services/my.own.http.service'
+import {ServiceMyHttp} from './services/my.http.service'
+
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,12 @@ export class AppComponent  implements OnInit {
   user ={}
   lista =[]
 
-  constructor(private MyOwnHttp:MyOwnHttp){}
+  constructor(private ServiceMyHttp:ServiceMyHttp){}
+
+
 
   async ngOnInit() {
-    this.lista = await this.MyOwnHttp.get();
+    this.lista = await this.ServiceMyHttp.get();
   }
 
 }

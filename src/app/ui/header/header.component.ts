@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ServiceStatus} from '../../services/status.service'
 
 @Component({
   selector: 'app-header',
@@ -7,13 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   navbarOpen = false;
-  constructor() { }
+  constructor(private ServiceStatus:ServiceStatus) { }
+
+  private Isconnect=false;
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
 
   ngOnInit() {
+    this.Isconnect=this.ServiceStatus.IsConnect();
   }
 
 }
