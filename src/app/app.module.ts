@@ -5,10 +5,12 @@ import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
 import {HttpModule} from '@angular/http';
 
+
+
 import {ServiceMyHttp} from './services/my.http.service'
 import {ServiceStatus} from './services/status.service'
 
-import { RouterModule, Routes } from '@angular/router';
+
 
 @NgModule({
   declarations: [

@@ -18,7 +18,7 @@ export class AppComponent  implements OnInit {
 
 
   async ngOnInit() {
-    this.lista = await this.ServiceMyHttp.get();
+   // this.lista = await this.ServiceMyHttp.get();
   }
 
 }
