@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a  class="navbar-brand" [routerLink] ="['']">Aure</a>
+  <a  class="navbar-brand" [routerLink] ="['']">LOGO</a>
 
   <button class="navbar-toggler" type="button"
           (click)="toggleNavbar()">
@@ -23,8 +23,23 @@
       </li>
 
       <li [hidden]="!this.ServiceStatus.IsConnect()" class="nav-item">
-        <a class="nav-link" href="#">Tus datos</a>
+        <a class="nav-link" [routerLink] ="['tusdatos']">Tus datos</a> 
       </li>
+
+      <li [hidden]="!this.ServiceStatus.IsAdmin()" class="nav-item">
+          <a class="nav-link" [routerLink] ="['tusdatos']">Solo Admin</a> 
+        </li>
+
     </ul>
+
+    <ul [hidden]="!this.ServiceStatus.IsConnect()" class="nav navbar-nav navbar-right">
+        <i class="fa fa-user-circle-o" aria-hidden="true"> {{this.ServiceStatus.ViewUser}}</i>
+        
+      </ul>
+
   </div>
+
+  
+
+  
 </nav>

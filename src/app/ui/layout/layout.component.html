@@ -1,5 +1,9 @@
 <app-header></app-header>
 <div class="container">
+    <div class="alert alert-danger"  [hidden]="this.ServiceStatus.HiddenmsgErrorBool" (click)="close()">        
+        <strong>Error!</strong> {{this.ServiceStatus.msgErrorStr}}
+      </div>
+
   <ng-content></ng-content>
 </div>
 <router-outlet> </router-outlet>

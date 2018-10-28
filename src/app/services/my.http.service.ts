@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {ServiceStatus} from '../services/status.service'
 
 
 
@@ -15,7 +16,7 @@ export class ServiceMyHttp {
 
     private UrlLogin = this.Url + '/login/';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http,private ServiceStatus :ServiceStatus) { }
 
     async get(): Promise<any> {
         const value = await this.http.get(this.Url).toPromise();
@@ -35,26 +36,20 @@ export class ServiceMyHttp {
               .post(this.UrlLogin, user)
               .toPromise();
 
-              console.log(response.headers.get('x-access-token'));
+              if(response.json().login){
+                this.ServiceStatus.setStatus(response.json()['x-access-token']);
 
-            return response.json().data;
+                return response.json().login;
+              }
+              else{
+                return false;
+              }             
+
           } catch (error) {
             await this.handleError(error);
           }      
 
     }
 
-
-    login1(user): Observable<boolean> {
-        return this.http.post(this.UrlLogin, user)
-          .pipe(
-            map(result => {
-              localStorage.setItem('access_token', result.data);
-              return true;
-            })
-          );
-      }
-
-
-
+ 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ServiceMyHttp} from './services/my.http.service'
+import {ServiceStatus} from './services/status.service'
 
 
 @Component({
@@ -13,12 +13,15 @@ export class AppComponent  implements OnInit {
   user ={}
   lista =[]
 
-  constructor(private ServiceMyHttp:ServiceMyHttp){}
+  constructor(private ServiceStatus:ServiceStatus){}
 
 
 
   async ngOnInit() {
    // this.lista = await this.ServiceMyHttp.get();
+
+   this.ServiceStatus.reload();
+
   }
 
 }

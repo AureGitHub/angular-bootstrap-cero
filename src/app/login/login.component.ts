@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceStatus} from '../services/status.service'
 import {ServiceMyHttp} from '../services/my.http.service'
+import {Router} from '@angular/router';
 
-class User{
+class UserLogin{
   public identificador: string;
   public password: string;
   constructor(){}
@@ -17,9 +18,9 @@ class User{
 
 export class LoginComponent implements OnInit { 
 
-  constructor(private ServiceStatus :ServiceStatus,private ServiceMyHttp:ServiceMyHttp) { }
+  constructor(private ServiceStatus :ServiceStatus,private ServiceMyHttp:ServiceMyHttp,private router: Router) { }
 
-  user = new  User();
+  user = new  UserLogin();
 
   ngOnInit() {
     this.user.identificador ="jdesande";
@@ -32,9 +33,16 @@ export class LoginComponent implements OnInit {
 
   
 
-  async onSubmit() {     
+  async onSubmit() {      
     
       var login = await this.ServiceMyHttp.login(this.user);
+
+      if(login)     
+        this.router.navigateByUrl('/home');
+      else{
+        this.ServiceStatus.msgError('usuario/password erróneo');
+      }
+
       var a='';
     
   }
