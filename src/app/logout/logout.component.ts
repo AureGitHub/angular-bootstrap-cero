@@ -27,7 +27,7 @@ export class LogoutdComponent implements OnInit {
   desconectar(){
     this.ServiceStatus.logout();
 
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/home', {skipLocationChange: true});
 
 
   }

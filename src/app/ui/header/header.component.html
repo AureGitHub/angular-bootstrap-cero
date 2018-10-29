@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a  class="navbar-brand" [routerLink] ="['']">LOGO</a>
+  <a  class="navbar-brand" [routerLink] ="[''] " skipLocationChange>LOGO</a>
 
   <button class="navbar-toggler" type="button"
           (click)="toggleNavbar()">
@@ -11,23 +11,23 @@
        [ngClass]="{ 'show': navbarOpen }">
     <ul class="navbar-nav mr-auto">
         <li [hidden]="this.ServiceStatus.IsConnect()" class="nav-item">
-            <a class="nav-link"  [routerLink] ="['login']">Conectar</a>
+            <a class="nav-link"  [routerLink] ="['login']" skipLocationChange>Conectar</a>
           </li>
 
           <li [hidden]="!this.ServiceStatus.IsConnect()" class="nav-item">
-              <a class="nav-link" [routerLink] ="['logout']">Desconectar</a>
+              <a class="nav-link" [routerLink] ="['logout']" skipLocationChange>Desconectar</a>
             </li>
 
       <li class="nav-item">
-        <a class="nav-link" [routerLink] ="['about']">About</a>
+        <a class="nav-link" [routerLink] ="['about']" skipLocationChange>About</a>
       </li>
 
       <li [hidden]="!this.ServiceStatus.IsConnect()" class="nav-item">
-        <a class="nav-link" [routerLink] ="['tusdatos']">Tus datos</a> 
+        <a class="nav-link" [routerLink] ="['tusdatos']" skipLocationChange>Tus datos</a> 
       </li>
 
       <li [hidden]="!this.ServiceStatus.IsAdmin()" class="nav-item">
-          <a class="nav-link" [routerLink] ="['tusdatos']">Solo Admin</a> 
+          <a class="nav-link" [routerLink] ="['tusdatos']" skipLocationChange>Solo Admin</a> 
         </li>
 
     </ul>

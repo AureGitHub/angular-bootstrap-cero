@@ -18,33 +18,34 @@ class UserLogin{
 
 export class LoginComponent implements OnInit { 
 
-  constructor(private ServiceStatus :ServiceStatus,private ServiceMyHttp:ServiceMyHttp,private router: Router) { }
+  // tslint:disable-next-line:whitespace
+  constructor(private ServiceStatus:ServiceStatus,private ServiceMyHttp:ServiceMyHttp,private router: Router) { }
 
   user = new  UserLogin();
 
   ngOnInit() {
-    this.user.identificador ="jdesande";
-    this.user.password ="123456";
+    this.user.identificador = 'jdesande';
+    this.user.password = '123456';
   }
 
   myFunc(){
     this.ServiceStatus.TestConnect();
   }
 
-  
 
-  async onSubmit() {      
-    
-      var login = await this.ServiceMyHttp.login(this.user);
 
-      if(login)     
-        this.router.navigateByUrl('/home');
-      else{
+  async onSubmit() {
+
+      const login = await this.ServiceMyHttp.login(this.user);
+
+      if (login) {
+        this.router.navigateByUrl('/home', {skipLocationChange: true});
+      } else {
         this.ServiceStatus.msgError('usuario/password erróneo');
       }
 
-      var a='';
-    
+      const a = '';
+
   }
 
   // TODO: Remove this when we're done
