@@ -30,6 +30,11 @@ const routes: Routes = [
     loadChildren: './../about/about.module#AboutModule'
   },
 
+    {
+    path: 'gesusers',
+    loadChildren: './../gesuser/gesuser.module#GesUserModule'
+  },
+
   {
     path: '**',
     /*si aqui pongo un componente, entonces me carga el modulo al que pertenece. Para que
