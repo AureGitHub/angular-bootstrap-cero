@@ -1,6 +1,7 @@
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { PagerService } from 'src/app/gesuser/gesuser.service';
+import {ServiceMyHttp} from '../services/my.http.service'
 
 
 @Component({
@@ -10,7 +11,7 @@ import { PagerService } from 'src/app/gesuser/gesuser.service';
 })
 export class GesUserComponent implements OnInit {
 
-  constructor(private http: Http, private pagerService: PagerService) { }
+  constructor(private ServiceMyHttp:ServiceMyHttp, private pagerService: PagerService) { }
 
    private allItems: any[];
 
@@ -19,15 +20,14 @@ export class GesUserComponent implements OnInit {
     // paged items
     pagedItems: any[];
 
-    ngOnInit() {
+    async ngOnInit() {
         // get dummy data
-        this.http.get('/assets/dummy-data.json').toPromise().then(
-          (respone) => {
-             this.allItems = respone.json();
-              this.setPage(1);
-          }
 
-        );
+
+        const users = await this.ServiceMyHttp.Get('/user',null);
+
+        this.allItems = users;
+        this.setPage(1);       
     }
 
     setPage(page: number) {

@@ -20,6 +20,17 @@ export class ServiceStatus {
     public HiddenmsgErrorBool =true;
     public ViewUser = '';
 
+    public loading = false;
+
+    public get Loading(){
+        return this.loading;
+    }
+
+    public set Loading(b)
+    {
+        this.loading=b;
+    }
+
     public msgError(msg){
         this.msgErrorStr = msg;
         this.HiddenmsgErrorBool = false;

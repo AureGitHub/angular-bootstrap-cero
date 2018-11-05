@@ -32,9 +32,12 @@ export class ServiceMyHttp {
     async login(user): Promise<any> {
 
         try {
+          this.ServiceStatus.Loading=true;
             let response = await this.http
               .post(this.UrlLogin, user)
               .toPromise();
+
+              this.ServiceStatus.Loading=false;
 
               if(response.json().login){
                 this.ServiceStatus.setStatus(response.json()['x-access-token']);
@@ -46,10 +49,64 @@ export class ServiceMyHttp {
               }             
 
           } catch (error) {
+            this.ServiceStatus.Loading=false;
             await this.handleError(error);
           }      
 
     }
+
+    async Post(url,obj): Promise<any> {
+
+      try {
+        this.ServiceStatus.Loading=true;
+          let response = await this.http
+            .post( this.Url + url, obj)
+            .toPromise();
+
+            this.ServiceStatus.Loading=false;
+
+            if(response.json().login){
+              this.ServiceStatus.setStatus(response.json()['x-access-token']);
+
+              return response.json().data;
+            }
+            else{
+              return false;
+            }             
+
+        } catch (error) {
+          this.ServiceStatus.Loading=false;
+          await this.handleError(error);
+        }      
+
+  }
+
+  async Get(url,obj): Promise<any> {
+
+    try {
+      this.ServiceStatus.Loading=true;
+        let response = await this.http
+          .get(this.Url + url)
+          .toPromise();
+
+          this.ServiceStatus.Loading=false;
+
+          return response.json().data;
+
+          // if(response.json()['x-access-token']){
+          //   this.ServiceStatus.setStatus(response.json()['x-access-token']);
+          //   return response.json().data;
+          // }
+          // else{
+          //   return null;
+          // }             
+
+      } catch (error) {
+        this.ServiceStatus.Loading=false;
+        await this.handleError(error);
+      }      
+
+}
 
  
 }

@@ -3,8 +3,15 @@
         <div class="text-center">
             <h1>Angular 2 - Pagination Example with logic like Google</h1>
 
-            <!-- items being paged -->
-            <div *ngFor="let item of pagedItems">{{item.name}}</div>
+            <div class="container">
+                    <div *ngFor="let item of pagedItems" class="row align-items-start">
+                            <div class="col-2">{{item.usuario}}</div>
+                            <div class="col-4">{{item.email}}</div>
+                            <div class="col-6"></div>
+
+                    </div>
+            </div>
+        
 
             <!-- pager -->
             <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
